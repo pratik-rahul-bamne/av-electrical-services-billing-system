@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - AV Electrical Services</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="invoice-container">
+        <!-- Header -->
+        <header class="invoice-header">
+            <div class="header-left">
+                <h1 class="company-name">AV Electrical Services</h1>
+                <p class="business-type">Electrical Services</p>
+            </div>
+            <div class="header-right">
+                <h2 class="invoice-title">INVOICE</h2>
+                <button id="new-invoice-btn" class="btn-ghost print-hidden">⟳ New Invoice</button>
+            </div>
+        </header>
+
+        <!-- Invoice Details Section -->
+        <section class="invoice-info">
+            <div class="info-column bill-to">
+                <h3>Bill To:</h3>
+                <div class="form-group">
+                    <input type="text" id="customer-name" placeholder="Customer Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="customer-address" placeholder="Street Address">
+                </div>
+                <div class="form-group">
+                    <div class="row-input">
+                        <input type="text" id="customer-city" placeholder="City">
+                        <input type="text" id="customer-zip" placeholder="Postal Code">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-column invoice-meta">
+                <div class="meta-row">
+                    <label for="invoice-number">Invoice #</label>
+                    <input type="text" id="invoice-number" readonly>
+                </div>
+                <div class="meta-row">
+                    <label for="invoice-date">Date</label>
+                    <input type="date" id="invoice-date">
+                </div>
+            </div>
+        </section>
+
+        <!-- Items Table -->
+        <section class="invoice-items">
+            <table id="items-table">
+                <thead>
+                    <tr>
+                        <th class="col-item">Item & Description</th>
+                        <th class="col-qty">Msg/Qty</th>
+                        <th class="col-price">Price (₹)</th>
+                        <th class="col-tax">Tax (%)</th>
+                        <th class="col-total">Amount (₹)</th>
+                        <th class="col-action print-hidden"></th>
+                    </tr>
+                </thead>
+                <tbody id="items-body">
+                    <!-- Rows will be added dynamically here -->
+                </tbody>
+            </table>
+            <button id="add-item-btn" class="btn-secondary print-hidden">+ Add Line Item</button>
+        </section>
+
+        <!-- Totals Section -->
+        <section class="invoice-totals">
+            <div class="totals-container">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal-display">₹0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Tax Total</span>
+                    <span id="tax-total-display">₹0.00</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total</span>
+                    <span id="grand-total-display">₹0.00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notes -->
+        <section class="invoice-notes">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" placeholder="Thank you for your business! Payment is due within 30 days."></textarea>
+        </section>
+
+        <!-- Footer / Actions -->
+        <div class="invoice-actions print-hidden">
+            <button id="print-btn" class="btn-primary">Print / Save as PDF</button>
+        </div>
+
+        <footer class="app-footer print-hidden">
+            <p>Developed by <strong>PB Dev</strong> company</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

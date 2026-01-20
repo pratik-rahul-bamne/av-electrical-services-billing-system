@@ -1,0 +1,517 @@
+/* Global Styles */
+:root {
+    --primary-color: #2563EB;
+    /* Professional Blue */
+    --primary-dark: #1E40AF;
+    --secondary-bg: #E0E7FF;
+    /* Softer blue for secondary actions */
+    --secondary-text: #3730A3;
+    --text-color: #111827;
+    /* Darker for better contrast */
+    --text-light: #4B5563;
+    --bg-color: #F3F4F6;
+    --paper-bg: #FFFFFF;
+    --border-color: #D1D5DB;
+    /* Higher contrast border */
+    --input-border: #9CA3AF;
+    --danger-color: #EF4444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 2rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Invoice Container (Paper like) */
+.invoice-container {
+    background-color: var(--paper-bg);
+    max-width: 850px;
+    /* A4ish width */
+    margin: 0 auto;
+    padding: 3rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    border-top: 5px solid var(--primary-color);
+    /* Visual flair */
+}
+
+/* Typography Helpers */
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    border: 1px solid var(--border-color);
+    /* Improve visibility */
+    border-radius: 4px;
+    padding: 0.625rem;
+    width: 100%;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    /* Better readability */
+    color: var(--text-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9CA3AF;
+    /* Lighter placeholder */
+}
+
+input:hover,
+textarea:hover {
+    background-color: #F9FAFB;
+    border-color: #6B7280;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    /* Accessible focus ring */
+    background-color: #fff;
+}
+
+/* Specific Input Styling */
+input[readonly] {
+    background-color: #F3F4F6;
+    /* Clear visual indicator for read-only */
+    cursor: not-allowed;
+    color: var(--text-color);
+    font-weight: 600;
+    border-color: transparent;
+}
+
+/* Header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--bg-color);
+    /* Softer divider */
+}
+
+.business-type {
+    color: var(--text-light);
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.invoice-title {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+}
+
+/* Info Section (Bill To & Meta) */
+.invoice-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.info-column {
+    flex: 1;
+}
+
+.bill-to .form-group {
+    margin-bottom: 0.75rem;
+}
+
+.invoice-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.meta-row label {
+    font-weight: 600;
+    color: var(--text-light);
+    margin-right: 1rem;
+    text-align: right;
+    width: 100px;
+}
+
+.meta-row input {
+    width: 160px;
+    text-align: right;
+}
+
+.row-input {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Items Table */
+.invoice-items {
+    margin-bottom: 2rem;
+}
+
+#items-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#items-table th {
+    text-align: left;
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#items-table td {
+    padding: 0.75rem 0.5rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--bg-color);
+}
+
+.col-item {
+    width: 40%;
+}
+
+.col-qty {
+    width: 10%;
+    text-align: right;
+}
+
+.col-price {
+    width: 15%;
+    text-align: right;
+}
+
+.col-tax {
+    width: 10%;
+    text-align: right;
+}
+
+.col-total {
+    width: 15%;
+    text-align: right;
+}
+
+.col-action {
+    width: 5%;
+    text-align: center;
+}
+
+/* Table Inputs */
+.item-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.item-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Ensure numeric inputs align correctly */
+.qty-input,
+.price-input,
+.tax-input {
+    text-align: right;
+}
+
+.row-amount {
+    display: block;
+    padding: 0.625rem 0.5rem;
+    /* Match input padding */
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Buttons */
+.btn-remove {
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.btn-remove:hover {
+    color: var(--danger-color);
+    background-color: #FEF2F2;
+}
+
+/* Improved "Add Item" Button */
+.btn-secondary {
+    margin-top: 1rem;
+    background-color: var(--secondary-bg);
+    /* Solid background per request */
+    border: 1px solid transparent;
+    /* Cleaner than dashed */
+    color: var(--secondary-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background-color: #C7D2FE;
+    transform: translateY(-1px);
+}
+
+/* Totals Section */
+.invoice-totals {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4rem;
+    margin-top: 1rem;
+}
+
+.totals-container {
+    width: 320px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--bg-color);
+    color: var(--text-light);
+}
+
+.total-row:last-child {
+    border-bottom: none;
+}
+
+.total-row span:first-child {
+    font-weight: 500;
+}
+
+.total-row span:last-child {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.grand-total {
+    font-size: 1.5rem;
+    font-weight: 800;
+    /* Bolder per request */
+    color: var(--primary-color) !important;
+    border-top: 2px solid var(--primary-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    align-items: center;
+}
+
+/* Notes */
+.invoice-notes {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.invoice-notes label {
+    font-size: 1rem;
+    /* Increased size */
+    font-weight: 700;
+    /* Increased weight */
+    color: var(--text-color);
+    /* Darker */
+    display: block;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.invoice-notes textarea {
+    min-height: 100px;
+    resize: vertical;
+    border-color: var(--border-color);
+}
+
+/* Actions */
+.invoice-actions {
+    margin-top: 3rem;
+    text-align: right;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--border-color);
+    /* Separate UI controls */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.5);
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+    background-color: #FEF2F2;
+    color: var(--danger-color);
+    border-color: #FCA5A5;
+}
+
+
+
+.app-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-light);
+    font-size: 0.75rem;
+}
+
+.app-footer strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Print Styles - Optimized */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+        font-size: 12pt;
+        /* Readable print size */
+        color: #000;
+    }
+
+    .invoice-container {
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0 0.5in;
+        /* Standard print margin */
+        border: none;
+    }
+
+    /* Hide Interactive Elements */
+    .print-hidden,
+    #add-item-btn,
+    .btn-remove,
+    .invoice-actions {
+        display: none !important;
+    }
+
+    /* Layout Adjustments */
+    .invoice-header {
+        margin-bottom: 2rem;
+    }
+
+    /* Clean Inputs for Print */
+    input,
+    textarea {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        resize: none;
+        box-shadow: none !important;
+    }
+
+    /* Ensure Placeholders don't print */
+    input::placeholder,
+    textarea::placeholder {
+        color: transparent !important;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    .grand-total {
+        color: var(--primary-color) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #items-table th {
+        color: black !important;
+        border-bottom: 2px solid #000 !important;
+    }
+
+    .total-row {
+        border-bottom-color: #ddd !important;
+    }
+
+    /* Ensure footer/notes don't break awkwardly */
+    .invoice-notes {
+        page-break-inside: avoid;
+    }
+}
