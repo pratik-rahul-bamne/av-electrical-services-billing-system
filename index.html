@@ -18,40 +18,48 @@
         <!-- Header -->
         <header class="invoice-header">
             <div class="header-left">
-                <h1 class="company-name">AV Electrical Services</h1>
-                <p class="business-type">Electrical Services</p>
+                <h1 class="company-name" data-i18n="companyName">AV Electrical Services</h1>
+                <p class="business-type" data-i18n="businessType">Electrical Services</p>
             </div>
             <div class="header-right">
-                <h2 class="invoice-title">INVOICE</h2>
-                <button id="new-invoice-btn" class="btn-ghost print-hidden">⟳ New Invoice</button>
+                <div class="lang-switch-container print-hidden">
+                    <button id="lang-toggle" class="btn-ghost">🌐 English / मराठी</button>
+                </div>
+                <h2 class="invoice-title" data-i18n="invoiceTitle">INVOICE</h2>
+                <button id="new-invoice-btn" class="btn-ghost print-hidden" data-i18n="newInvoice">⟳ New
+                    Invoice</button>
             </div>
         </header>
 
         <!-- Invoice Details Section -->
         <section class="invoice-info">
             <div class="info-column bill-to">
-                <h3>Bill To:</h3>
+                <h3 data-i18n="billTo">Bill To:</h3>
                 <div class="form-group">
-                    <input type="text" id="customer-name" placeholder="Customer Name">
+                    <input type="text" id="customer-name" placeholder="Customer Name"
+                        data-i18n-placeholder="customerNamePlaceholder">
                 </div>
                 <div class="form-group">
-                    <input type="text" id="customer-address" placeholder="Street Address">
+                    <input type="text" id="customer-address" placeholder="Street Address"
+                        data-i18n-placeholder="addressPlaceholder">
                 </div>
                 <div class="form-group">
                     <div class="row-input">
-                        <input type="text" id="customer-city" placeholder="City">
-                        <input type="text" id="customer-zip" placeholder="Postal Code">
+                        <input type="text" id="customer-city" placeholder="City"
+                            data-i18n-placeholder="cityPlaceholder">
+                        <input type="text" id="customer-zip" placeholder="Postal Code"
+                            data-i18n-placeholder="zipPlaceholder">
                     </div>
                 </div>
             </div>
 
             <div class="info-column invoice-meta">
                 <div class="meta-row">
-                    <label for="invoice-number">Invoice #</label>
+                    <label for="invoice-number" data-i18n="invoiceNo">Invoice #</label>
                     <input type="text" id="invoice-number" readonly>
                 </div>
                 <div class="meta-row">
-                    <label for="invoice-date">Date</label>
+                    <label for="invoice-date" data-i18n="dateLabel">Date</label>
                     <input type="date" id="invoice-date">
                 </div>
             </div>
@@ -62,11 +70,11 @@
             <table id="items-table">
                 <thead>
                     <tr>
-                        <th class="col-item">Item & Description</th>
-                        <th class="col-qty">Msg/Qty</th>
-                        <th class="col-price">Price (₹)</th>
-                        <th class="col-tax">Tax (%)</th>
-                        <th class="col-total">Amount (₹)</th>
+                        <th class="col-item" data-i18n="colItem">Item & Description</th>
+                        <th class="col-qty" data-i18n="colQty">Msg/Qty</th>
+                        <th class="col-price" data-i18n="colPrice">Price (₹)</th>
+                        <th class="col-tax" data-i18n="colTax">Tax (%)</th>
+                        <th class="col-total" data-i18n="colTotal">Amount (₹)</th>
                         <th class="col-action print-hidden"></th>
                     </tr>
                 </thead>
@@ -74,40 +82,42 @@
                     <!-- Rows will be added dynamically here -->
                 </tbody>
             </table>
-            <button id="add-item-btn" class="btn-secondary print-hidden">+ Add Line Item</button>
+            <button id="add-item-btn" class="btn-secondary print-hidden" data-i18n="addItem">+ Add Line Item</button>
         </section>
 
         <!-- Totals Section -->
         <section class="invoice-totals">
             <div class="totals-container">
                 <div class="total-row">
-                    <span>Subtotal</span>
+                    <span data-i18n="subtotal">Subtotal</span>
                     <span id="subtotal-display">₹0.00</span>
                 </div>
                 <div class="total-row">
-                    <span>Tax Total</span>
+                    <span data-i18n="taxTotal">Tax Total</span>
                     <span id="tax-total-display">₹0.00</span>
                 </div>
                 <div class="total-row grand-total">
-                    <span>Total</span>
+                    <span data-i18n="total">Total</span>
                     <span id="grand-total-display">₹0.00</span>
                 </div>
             </div>
         </section>
 
-        <!-- Notes -->
+        <!-- Notes 
         <section class="invoice-notes">
             <label for="notes">Notes:</label>
             <textarea id="notes" placeholder="Thank you for your business! Payment is due within 30 days."></textarea>
         </section>
+        -->
 
         <!-- Footer / Actions -->
         <div class="invoice-actions print-hidden">
-            <button id="print-btn" class="btn-primary">Print / Save as PDF</button>
+            <button id="print-btn" class="btn-primary" data-i18n="printSave">Print / Save as PDF</button>
         </div>
 
         <footer class="app-footer print-hidden">
-            <p>Developed by <strong>PB Dev</strong> company</p>
+            <p><span data-i18n="developedBy">Developed by</span> <strong>PB Dev</strong> <span
+                    data-i18n="company">company</span></p>
         </footer>
     </div>
 

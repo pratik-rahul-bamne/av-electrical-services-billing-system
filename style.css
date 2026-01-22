@@ -137,6 +137,27 @@ input[readonly] {
     font-weight: 800;
 }
 
+.lang-switch-container {
+    text-align: right;
+    margin-bottom: 0.5rem;
+}
+
+#lang-toggle {
+    display: inline-block;
+    width: auto;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+#lang-toggle:hover {
+    background-color: var(--secondary-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
 /* Info Section (Bill To & Meta) */
 .invoice-info {
     display: flex;
