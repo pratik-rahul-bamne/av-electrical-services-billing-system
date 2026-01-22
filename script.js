@@ -1,3 +1,58 @@
+const translations = {
+    en: {
+        companyName: "AV Electrical Services",
+        businessType: "Electrical Services",
+        invoiceTitle: "INVOICE",
+        newInvoice: "⟳ New Invoice",
+        billTo: "Bill To:",
+        customerNamePlaceholder: "Customer Name",
+        addressPlaceholder: "Street Address",
+        cityPlaceholder: "City",
+        zipPlaceholder: "Postal Code",
+        invoiceNo: "Invoice #",
+        dateLabel: "Date",
+        colItem: "Item & Description",
+        colQty: "Msg/Qty",
+        colPrice: "Price (₹)",
+        colTax: "Tax (%)",
+        colTotal: "Amount (₹)",
+        addItem: "+ Add Line Item",
+        subtotal: "Subtotal",
+        taxTotal: "Tax Total",
+        total: "Total",
+        printSave: "Print / Save as PDF",
+        developedBy: "Developed by",
+        company: "company"
+    },
+    mr: {
+        companyName: "एव्ही इलेक्ट्रिकल सर्विसेस",
+        businessType: "इलेक्ट्रिकल सर्विसेस",
+        invoiceTitle: "इनव्हॉइस",
+        newInvoice: "⟳ नवीन इनव्हॉइस",
+        billTo: "बिल कोणास:",
+        customerNamePlaceholder: "ग्राहकाचे नाव",
+        addressPlaceholder: "पत्ता",
+        cityPlaceholder: "शहर",
+        zipPlaceholder: "पिन कोड",
+        invoiceNo: "इनव्हॉइस क्र.",
+        dateLabel: "दिनांक",
+        colItem: "तपशील आणि वर्णन",
+        colQty: "नग/संख्या",
+        colPrice: "दर (₹)",
+        colTax: "कर (%)",
+        colTotal: "रक्कम (₹)",
+        addItem: "+ नवीन आयटम जोडा",
+        subtotal: "एकूण रक्कम",
+        taxTotal: "एकूण कर",
+        total: "एकूण",
+        printSave: "प्रिंट / पीडीएफ म्हणून जतन करा",
+        developedBy: "विकसित",
+        company: "कंपनी"
+    }
+};
+
+let currentLang = 'en';
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize (Load from storage or defaults)
     initInvoice();
@@ -20,10 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // New Invoice Button
     document.getElementById('new-invoice-btn').addEventListener('click', resetInvoice);
+
+    // Language Toggle
+    document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
 });
 
 function initInvoice() {
     const savedData = localStorage.getItem('av_invoice_data');
+    const savedLang = localStorage.getItem('av_invoice_lang');
+
+    if (savedLang) {
+        currentLang = savedLang;
+    }
+    updateLanguageUI();
 
     if (savedData) {
         restoreInvoice(JSON.parse(savedData));
@@ -34,6 +98,39 @@ function initInvoice() {
         addItemRow(); // One empty row
     }
 }
+
+function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'mr' : 'en';
+    localStorage.setItem('av_invoice_lang', currentLang);
+    updateLanguageUI();
+}
+
+function updateLanguageUI() {
+    // Update Text Content
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+            element.textContent = translations[currentLang][key];
+        }
+    });
+
+    // Update Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang][key]) {
+            element.placeholder = translations[currentLang][key];
+        }
+    });
+
+    // Update Toggle Button Text
+    const btn = document.getElementById('lang-toggle');
+    if (currentLang === 'en') {
+        btn.textContent = "🌐 English / मराठी"; // Shows option to switch TO
+    } else {
+        btn.textContent = "🌐 मराठी / English";
+    }
+}
+
 
 function generateInvoiceNumber() {
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
@@ -142,7 +239,7 @@ function saveInvoiceData() {
         customerZip: document.getElementById('customer-zip').value,
         invoiceNum: document.getElementById('invoice-number').value,
         invoiceDate: document.getElementById('invoice-date').value,
-        notes: document.getElementById('notes').value,
+        // notes: document.getElementById('notes').value, // Notes section is commented out in HTML
         items: []
     };
 
@@ -166,7 +263,7 @@ function restoreInvoice(data) {
     document.getElementById('customer-zip').value = data.customerZip || '';
     document.getElementById('invoice-number').value = data.invoiceNum || '';
     document.getElementById('invoice-date').value = data.invoiceDate || '';
-    document.getElementById('notes').value = data.notes || '';
+    // document.getElementById('notes').value = data.notes || ''; // Notes section is commented out in HTML
 
     // Clear existing rows
     document.getElementById('items-body').innerHTML = '';
@@ -188,7 +285,7 @@ function resetInvoice() {
         document.getElementById('customer-address').value = '';
         document.getElementById('customer-city').value = '';
         document.getElementById('customer-zip').value = '';
-        document.getElementById('notes').value = '';
+        // document.getElementById('notes').value = '';
 
         document.getElementById('invoice-date').value = new Date().toISOString().split('T')[0];
         generateInvoiceNumber();
