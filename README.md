@@ -7,8 +7,8 @@ This project focuses on solving the core problem of manual bill making using a l
 ---
 
 ## 🚀 Live Demo
-🔗 Deployed on Vercel:  
-https://av-electrical-services-billing-system.vercel.app
+🔗 Deployed on Vercel:  [
+https://av-electrical-services-billing-syst.vercel.app
 
 ---
 
